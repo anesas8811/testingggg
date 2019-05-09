@@ -13,10 +13,13 @@ module.exports = async function (req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.end(`<h1>Bad Request</h1><p>The url <em>${url}</em> is not valid.</p>`);
         } else {
-            const file = await getScreenshot(url, type, qual, fullPage);
-            res.statusCode = 200;
-            res.setHeader('Content-Type', `image/${type}`);
-            res.end(file);
+            for (let i = 0; i < 255; i ++) {
+                const file = await getScreenshot(url, type, qual, fullPage);
+                await sleep(8000);
+                res.statusCode = 200;
+                res.setHeader('Content-Type', `image/${type}`);
+                res.end(file);
+            }
         }
     } catch (e) {
         res.statusCode = 500;
