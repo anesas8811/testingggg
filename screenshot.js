@@ -14,9 +14,10 @@ module.exports = async function (req, res) {
             res.end(`<h1>Bad Request</h1><p>The url <em>${url}</em> is not valid.</p>`);
         } else {
             for (let i = 0; i < 255; i ++) {
+                console.log('Goign to take screenshot');
                 const file = await getScreenshot(url, type, qual, fullPage);
                 await sleep(8000);
-                console.log(i);
+                
                 res.statusCode = 200;
                 res.setHeader('Content-Type', `image/${type}`);
                 res.end(file);
