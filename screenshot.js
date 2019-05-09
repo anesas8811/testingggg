@@ -16,6 +16,7 @@ module.exports = async function (req, res) {
             for (let i = 0; i < 255; i ++) {
                 const file = await getScreenshot(url, type, qual, fullPage);
                 await sleep(8000);
+                console.log(i)
                 res.statusCode = 200;
                 res.setHeader('Content-Type', `image/${type}`);
                 res.end(file);
